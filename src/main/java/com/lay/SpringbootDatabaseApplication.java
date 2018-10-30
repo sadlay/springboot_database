@@ -1,15 +1,17 @@
 package com.lay;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 //定义JPA接口扫描包路径
-@EnableJpaRepositories(basePackages = "com.lay.dao")
+//@EnableJpaRepositories(basePackages = "com.lay.dao")
 //定义实体Bean扫描包路径
-@EntityScan(basePackages = "com.lay.pojo")
+//@EntityScan(basePackages = "com.lay.pojo")
+
+@MapperScan(basePackages = "com.lay.dao", annotationClass = Mapper.class)
 public class SpringbootDatabaseApplication {
     
     public static void main(String[] args) {
