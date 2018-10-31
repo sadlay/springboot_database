@@ -6,4 +6,7 @@
 	<select id="getPerson" parameterType="long" resultType="person">
 		select id,person_name,sex,note from t_person where id=#{id}
 	</select>
+	<insert id="insertPerson" useGeneratedKeys="true" keyProperty="id" >
+		insert into t_person(person_name,sex,note) values(#{personName},#{sex},#{note})
+	</insert>
 </mapper>

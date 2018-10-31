@@ -8,34 +8,21 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.lay.dao.MyBatisPersonDao;
 import com.lay.pojo.Person;
+import com.lay.service.BatchService;
 import com.lay.service.MyBatisPersonService;
 
 @Service
-public class MyBatisPersonServiceImpl implements MyBatisPersonService {
-    
+public class BatchServiceImpl implements BatchService {
     @Autowired
-    MyBatisPersonDao myBatisPersonDao;
-    
-    @Override
-    public Person getPerson(Long id) {
-        return myBatisPersonDao.getPerson(id);
-    }
-    
-    @Override
-    @Transactional(isolation = Isolation.READ_COMMITTED, timeout = 1, propagation = Propagation.REQUIRES_NEW)
-    public int insertPerson(Person person) {
-        System.out.println("===========sex==========" + person.getSex().getId());
-        return myBatisPersonDao.insertPerson(person);
-    }
+    MyBatisPersonService personService;
     
     @Override
     @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
-    public int batchPerson(List<Person> personList) {
+    public int batchInsertPerson(List<Person> personList) {
         int count = 0;
         for (Person p : personList) {
-            count += insertPerson(p);
+            count += personService.insertPerson(p);
         }
         return count;
     }
