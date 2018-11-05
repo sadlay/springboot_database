@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 //定义实体Bean扫描包路径
 //@EntityScan(basePackages = "com.lay.pojo")
 
-@MapperScan(basePackages = "com.lay.dao", annotationClass = Mapper.class)
+@MapperScan(basePackages = "com.lay", annotationClass = Mapper.class)
 public class SpringbootDatabaseApplication {
     
     public static void main(String[] args) {
